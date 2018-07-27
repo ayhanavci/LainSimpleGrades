@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ayhanavci
+      POSTGRES_PASSWORD: demopass
+      POSTGRES_DB: lainsimplegrades
+  web:
+    build: .                        
+    command: sh -c './wait-for-it.sh db:5432 -t 10 -- ./init.sh '
+    image: ayhanavci/lainsimplegrades 
+    volumes:
+      - .:/lainsimplegrades
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db

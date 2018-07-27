@@ -1,0 +1,42 @@
+<!-- templates/Manager/schoollist.html -->
+{% extends 'base.html' %} {% block title %}School{% endblock %} {% block content %}
+<div class="w3-container w3-teal">
+  <h2>
+    <i class="fas fa-university" style="font-size:60px;color:rgb(208, 231, 231);text-shadow:2px 2px 4px #000000;"></i>
+    </i>&nbsp &nbspSchool List</h2>
+</div>
+{% if user.is_authenticated %}
+<div class="w3-responsive">
+  <table class="w3-table-all w3-card-4 w3-hoverable w3-centered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th colspan=2>Commands</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for school in Schools %}
+      <tr>
+        <td class="align-middle">{{ school.id }}</td>
+        <td class="align-middle">{{ school.name }}</td>
+        <td class="align-middle">{{ school.get_city_display }}</td>
+        <td class="align-middle">
+          <a href="{% url 'editschool' school.pk %}">Modify</td>
+        <td class="align-middle">
+          <a href="{% url 'deleteschool' school.pk %}">Delete</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">No schools yet</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br/>
+<a class="w3-btn w3-border w3-hover-text-blue" href="{% url 'addschool' %}">Add School</a>
+<br/> {% else %}
+<p>You are not logged in</p>
+{% endif %} {% endblock %}

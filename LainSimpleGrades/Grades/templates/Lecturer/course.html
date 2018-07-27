@@ -1,0 +1,80 @@
+<!-- templates/lecturer/course.html -->
+{% extends 'base.html' %} {% block title %}Course{% endblock %} {% block content %}
+<div class="w3-container w3-teal">
+    <h2>
+        <i class="fa fa-book-open" style="font-size:60px;color:rgb(208, 231, 231);text-shadow:2px 2px 4px #000000;"></i>
+        </i>&nbsp &nbsp{{ title }}</h2>
+</div>
+</br>
+<a class="w3-btn w3-block w3-teal w3-hover-text-aqua" href="{% url 'courselist' %}">Back to List</a>
+<div>
+
+    <form method="post" id="courseForm" novalidate>
+        {% csrf_token %} {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            <strong>{{ form.code.errors }}</strong>
+            <label for="{{ form.subject.id_for_label }}">{{ form.code.help_text }}</label>
+            {{ form.code }}
+        </div>
+        <div class="fieldWrapper">
+            <strong>{{ form.name.errors }}</strong>
+            <label for="{{ form.name.id_for_label }}">{{ form.name.help_text }}</label>
+            {{ form.name }}
+        </div>
+        <div class="fieldWrapper">
+            <strong>{{ form.school.errors }}</strong>
+            <label for="{{ form.school.id_for_label }}">{{ form.school.help_text }}</label>
+            {{ form.school }}
+        </div>
+        <div class="fieldWrapper">
+            <strong>{{ form.classRoom.errors }}</strong>
+            <label for="{{ form.classRoom.id_for_label }}">{{ form.classRoom.help_text }}</label>
+            {{ form.classRoom }}
+        </div>
+
+        <input class="w3-btn w3-block w3-teal w3-hover-text-aqua" type="submit" value="Submit">
+    </form>
+</div>
+
+<script> 
+    document.getElementById("id_school").addEventListener("change", populateClassRooms);
+    window.onload = function () {
+        populateClassRooms();
+    }
+    function onSchoolChanged() {
+        populateClassRooms();
+    }
+    function populateClassRooms() {
+        //Get dropdowns
+        var crSelectBox = document.getElementById("id_classRoom");
+        var scSelectBox = document.getElementById("id_school");
+
+        //Get selected school ID
+        var selectedSchool = scSelectBox.options[scSelectBox.selectedIndex].value;
+
+        //Get selected classroom ID, if any. Used to save state of "Update" forms
+        var selectedCR = -1;
+        if (crSelectBox.selectedIndex > -1)
+            selectedCR = crSelectBox.options[crSelectBox.selectedIndex].value;
+
+        //Clear Classrooms
+        for (i = crSelectBox.options.length - 1; i >= 0; i--)
+            crSelectBox.remove(i);
+
+        //For each classroom in all classrooms
+        {% for classRoom in crlist %}
+        var option = document.createElement("option");
+        //Add if school of the classroom matches selected school
+        if ('{{ classRoom.school.id }}' == selectedSchool) {
+            option.text = '{{ classRoom.name }}';
+            option.value = '{{ classRoom.id }}';
+            crSelectBox.add(option);
+        }
+        {% endfor %}
+
+        //Restore previous selection
+        if (selectedCR != -1)
+            crSelectBox.value = selectedCR;
+
+    }
+</script> {% endblock %}

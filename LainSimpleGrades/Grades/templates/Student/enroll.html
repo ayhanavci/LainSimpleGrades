@@ -1,0 +1,6 @@
+<!-- templates/Student/enroll.html -->
+{% extends 'base.html' %} {% block title %}Enroll{% endblock %} {% block content %}
+<h2>Enroll</h2>
+{% if user.is_authenticated %} Enrollment for {{ user.username }} {% else %}
+<p>You are not logged in</p>
+{% endif %} {% endblock %}

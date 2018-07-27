@@ -1,0 +1,44 @@
+<!-- templates/Manager/classroomlist.html -->
+{% extends 'base.html' %} {% block title %}Class Room{% endblock %} {% block content %}
+<div class="w3-container w3-teal">
+  <h2>
+    <i class="fas fa-door-open" style="font-size:60px;color:rgb(208, 231, 231);text-shadow:2px 2px 4px #000000;"></i>
+    </i>&nbsp &nbspClass Room List</h2>
+</div>
+{% if user.is_authenticated %}
+<div class="w3-responsive">
+  <table class="w3-table-all w3-card-4 w3-hoverable w3-centered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>School</th>
+        <th>City</th>
+        <th colspan=2>Commands</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for classroom in ClassRooms %}
+      <tr>
+        <td class="align-middle">{{ classroom.id }}</td>
+        <td class="align-middle">{{ classroom.name }}</td>
+        <td class="align-middle">{{ classroom.school.name }}</td>
+        <td class="align-middle">{{ classroom.school.get_city_display }}</td>
+        <td class="align-middle">
+          <a href="{% url 'editclassroom' classroom.pk %}">Modify</td>
+        <td class="align-middle">
+          <a href="{% url 'deleteclassroom' classroom.pk %}">Delete</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">No classrooms yet</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br/>
+<a class="w3-btn w3-border w3-hover-text-blue" href="{% url 'addclassroom' %}">Add Class Room</a>
+<br/> {% else %}
+<p>You are not logged in</p>
+{% endif %} {% endblock %}

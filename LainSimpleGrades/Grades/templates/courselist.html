@@ -1,0 +1,77 @@
+<!-- templates/courselist.html -->
+{% extends 'base.html' %} {% block title %}Course{% endblock %} {% block content %}
+<div class="w3-container w3-teal">
+  <h2>
+    <i class="fas fa-list-ul" style="font-size:60px;color:rgb(208, 231, 231);text-shadow:2px 2px 4px #000000;"></i>
+    </i>&nbsp &nbspCourse List</h2>
+</div>
+{% if user.is_authenticated %}
+<div class="w3-responsive">
+  <table class="w3-table-all w3-card-4 w3-hoverable w3-centered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Class Room</th>
+        <th>Lecturer</th>
+        <th colspan=4>Commands</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in Courses %}
+      <tr>
+        <td class="align-middle">{{ course.id }}</td>
+        <td class="align-middle">{{ course.code }}</td>
+        <td class="align-middle">{{ course.name }}</td>
+        <td class="align-middle">{{ course.classRoom }}</td>
+        <td class="align-middle">{{ course.lecturer.first_name }} {{ course.lecturer.last_name }}</td>
+        {% if user.user_type == 2 %}
+        <td class="align-middle">
+          <a href="{% url 'studentlist' course.pk %}">View Students
+        </td>
+        {% elif user.user_type == 1 %}
+        <td class="align-middle">
+          <a href="{% url 'enroll' course.pk %}">Enroll
+        </td>
+        {% else %}
+        <td class="align-middle">
+          <a href="{% url 'studentlist' course.pk %}">View Students
+        </td>
+
+        {% endif %} {% if course.lecturer == user %}
+        <td class="align-middle">
+          <a href="{% url 'givegrades' course.pk %}">Grade
+        </td>
+        <td class="align-middle">
+          <a href="{% url 'editcourse' course.pk %}">Modify
+        </td>
+        <td class="align-middle">
+          <a href="{% url 'deletecourse' course.pk %}">Delete
+        </td>
+        {% else %}
+        <td class="align-middle"></td>
+        <td class="align-middle"></td>
+        <td class="align-middle"></td>
+        {% endif %}
+      </tr>
+      {% empty %}
+      <tr>
+        <td>No courses yet</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br/> {% if user.user_type == 2 %}
+<a class="w3-btn w3-border w3-hover-text-blue" href="{% url 'addcourse' %}">Add Course</a>
+{% endif %}
+<br/> {% else %}
+<p>You are not logged in</p>
+{% endif %}
+<p>
+  Lecturers can Add, Modify, Delete Courses and View Enrolled Students</br>
+  Studens can Enroll Courses</br>
+  Admins and Managers can View Enrolled Students
+</p>
+{% endblock %}

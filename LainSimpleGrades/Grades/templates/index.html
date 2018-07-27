@@ -1,0 +1,189 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %} {% block title %}School Grades Home{% endblock %} {% block content %}
+<div class="w3-container w3-teal">
+    <h2>
+        <i class="fas fa-home" style="font-size:60px;color:rgb(208, 231, 231);text-shadow:2px 2px 4px #000000;"></i>
+        </i>&nbsp &nbspHome</h2>
+</div>
+
+<div class="w3-responsive">
+    <p>Authorization Summary</p>
+    <table class="w3-table-all w3-card-4 w3-hoverable">
+        <tr>
+            <td></td>
+            <th scope="col">Manager</th>
+            <th scope="col">Lecturer</th>
+            <th scope="col">Student</th>
+            <th scope="col">Admin</th>
+        </tr>
+        <tr>
+            <th scope="row">Manage Schools</th>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Manage ClassRooms</th>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">View Courses</th>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Manage Courses*</th>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+
+        </tr>
+        <tr>
+            <th scope="row">View Users</th>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">View Enrolled Students</th>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Enroll Course</th>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Give Grades**</th>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">View Grades***</th>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Access to Admin Site</th>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-times" style="font-size:20px;color:red;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+            <td>
+                <i class="fas fa-check" style="font-size:20px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+            </td>
+        </tr>
+    </table>
+    <p>
+        * All Lecturers can Add a new course, but can only Modify/Delete his/her own courses.</br>
+        ** Lecturers can only give grades to the enrolled students of his/her own courses.</br>
+        *** Students can only view his/her own grades. Lecturers and managers can view all</br>
+    </p>
+</div>
+{% if user.is_authenticated %}
+<p>
+    Last login {{ user.last_login }}
+    <br/> Date joined {{ user.date_joined }}
+    <br/>
+    <br/>
+</p>
+{% else %}
+<p>Welcome to Grades demonstration. You are not authenticated yet.</p>
+<p>You can
+    <a href="{% url 'login' %}">Login</a> with your existing account or
+    <a href="{% url 'signup' %}">SignUp</a> as a new user. </p>
+{% endif %} {% endblock %}

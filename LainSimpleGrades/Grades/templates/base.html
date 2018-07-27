@@ -1,0 +1,178 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<title>Lain Simple Grades</title>
+{% load static %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="text/css" type="image/x-icon" href="{% static 'images/favicon.png' %}" />
+<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+  crossorigin="anonymous">
+<style>
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Arial", sans-serif
+  }
+</style>
+
+<body class="w3-light-grey">
+
+  <!-- Top container -->
+  <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
+      <i class="fa fa-bars"></i>  Menu</button>
+    {% if user.is_authenticated %}
+    <span class="w3-bar-item w3-right">
+      <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-padding"> |{{ user.username }}|  Logout
+        <i class="fa fa-sign-out-alt fa-fw"></i>
+      </a>
+    </span>
+    {% else %}
+    <span class="w3-bar-item w3-right">
+      <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-sign-in-alt fa-fw"></i>  Login</a>
+    </span>
+    <span class="w3-bar-item w3-right">
+      <a href="{% url 'signup' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-user-plus fa-fw"></i>  Signup</a>
+    </span>
+    {% endif %}
+  </div>
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+    <br>
+    <div class="w3-container w3-row">
+      <div class="w3-col s4">
+        {% if user.is_authenticated %} {% if user.user_type == 0 %}
+        <i class="fa fa-user-cog" style="font-size:60px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+        {% endif %} {% if user.user_type == 1 %}
+        <i class="fa fa-user-graduate" style="font-size:60px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+        {% endif %} {% if user.user_type == 2 %}
+        <i class="fa fa-chalkboard-teacher" style="font-size:60px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+        {% endif %} {% if user.user_type == 3 %}
+        <i class="fa fa-user-tie" style="font-size:60px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+        {% endif %} {% else %}
+        <i class="fa fa-user-ninja" style="font-size:60px;color:teal;text-shadow:2px 2px 4px #000000;"></i>
+        {% endif %}
+      </div>
+      <div class="w3-col s8 w3-bar">
+        {% if user.is_authenticated %}
+        <span>Welcome,
+          <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+        </span>
+        <br>
+        <span>Logged in as
+          <strong>{{ user.get_user_type_display }}</strong>
+        </span>
+        <br>
+        <!--a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a-->
+        {% else %}
+        <span>You are anonymous</span>
+        <br> {% endif %}
+
+      </div>
+    </div>
+
+    <hr>
+    <div class="w3-container">
+      <h5>Dashboard</h5>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
+        <i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+      <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-home fa-fw"></i>  Home</a>
+      {% if user.is_authenticated %} {% if user.user_type == 0 %}
+      <a href="{% url 'admin:index' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-cogs fa-fw"></i>  Administration</a>
+      {% endif %} {% if user.user_type == 1 %}
+      <a href="{% url 'takencourses' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-cogs fa-fw"></i>  Taken Courses</a>
+      {% endif %} {% if user.user_type == 2 %} {% endif %} {% if user.user_type == 3 %}
+      <a href="{% url 'schoollist' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-university fa-fw"></i>  Schools</a>
+      <a href="{% url 'classroomlist' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-door-open fa-fw"></i>  Class Rooms</a>
+      {% endif %}
+      <a href="{% url 'courselist' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-book fa-fw"></i>  Courses</a>
+      <a href="{% url 'userslist' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-users fa-fw"></i>  Users List</a>
+      <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-sign-out-alt fa-fw"></i>  Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-sign-in-alt fa-fw"></i>  Login</a>
+      <a href="{% url 'signup' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-user-plus fa-fw"></i>  Signup</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+    <!-- Header -->
+    <!--header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-desktop"></i> Grades Demo</b></h5>
+  </header-->
+    <div class="w3-container w3-padding-16">
+      {% block content %} {% endblock %}
+    </div>
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-16 w3-light-gray">
+      <p>Lain Simple Grades - Copyright © 2018 Ayhan Avcı Home:
+        <a href="https://lain.run/" target="_blank">Lain.run</a>. View source on 
+        <a href="https://github.com/ayhanavci/LainSimpleGrades" target="_blank">Github</a>
+      </p>     
+      
+      <p>
+        <a href="https://www.gnu.org/licenses/gpl.html" target="_blank">
+          <img src="{% static 'images/gpl-v3-logo.svg' %}" width="10%" height="10%" alt="GNU General Public License">
+        </a>
+      </p>
+    
+    </footer>
+
+    <!-- End page content -->
+  </div>
+
+  <script>
+    // Get the Sidebar
+    var mySidebar = document.getElementById("mySidebar");
+
+    // Get the DIV with overlay effect
+    var overlayBg = document.getElementById("myOverlay");
+
+    // Toggle between showing and hiding the sidebar, and add overlay effect
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+      } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+      }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+      mySidebar.style.display = "none";
+      overlayBg.style.display = "none";
+    }
+  </script>
+
+</body>
+
+</html>

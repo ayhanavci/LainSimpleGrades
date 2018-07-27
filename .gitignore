@@ -1,0 +1,6 @@
+.vscode
+LainSimpleGrades/LainSimpleGrades/__pycache__
+LainSimpleGrades/db.sqlite3
+LainSimpleGrades/Grades/migrations
+LainSimpleGrades/Grades/__pycache__/
+LainSimpleGrades/static/db.sqlite3

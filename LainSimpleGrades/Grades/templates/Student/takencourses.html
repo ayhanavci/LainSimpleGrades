@@ -1,0 +1,40 @@
+<!-- templates/Student/takencourses.html -->
+{% extends 'base.html' %} {% block title %}Course{% endblock %} {% block content %}
+<div class="w3-container w3-teal">
+  <h2>Course List</h2>
+</div>
+{% if user.is_authenticated %}
+<div class="w3-responsive">
+  <table class="w3-table-all w3-card-4 w3-hoverable w3-centered">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Class Room</th>
+        <th>Lecturer</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for taken in TakenCourses %}
+      <tr>
+        <td class="align-middle">{{ taken.course.code }}</td>
+        <td class="align-middle">{{ taken.course.name }}</td>
+        <td class="align-middle">{{ taken.course.classRoom }}</td>
+        <td class="align-middle">{{ taken.course.lecturer.first_name }} {{ taken.course.lecturer.last_name }}</td>
+        <td class={% if taken.grade < 50 %} "grade-fail"{% else %}"grade-pass"{%endif%}>{{ taken.grade }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td>No enrolled courses yet</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br/> {% if user.user_type == 2 %}
+<a class="w3-btn w3-border w3-hover-text-blue" href="{% url 'addcourse' %}">Add Course</a>
+{% endif %}
+<br/> {% else %}
+<p>You are not logged in</p>
+{% endif %} {% endblock %}

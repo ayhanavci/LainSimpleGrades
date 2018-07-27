@@ -1,0 +1,18 @@
+<!-- templates/lecturer/deletecourse.html -->
+{% extends 'base.html' %} {% block title %}Course{% endblock %} {% block content %}
+<div class="w3-container w3-teal">
+  <h2>
+    <i class="far fa-trash-alt" style="font-size:60px;color:rgb(208, 231, 231);text-shadow:2px 2px 4px #000000;"></i>
+    </i>&nbsp &nbsp Delete {{ course.name }} course</h2>
+</div>
+</br>
+<a class="w3-btn w3-block w3-teal w3-hover-text-aqua" href="{% url 'courselist' %}">Back to List</a>
+<div>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }} Are you sure you really want to delete course {{ course.name }}?
+    <br/>
+    <br/>
+    <input class="w3-btn w3-block w3-teal w3-hover-text-aqua" type="submit" value="Delete">
+  </form>
+</div>
+{% endblock %}
