@@ -21,8 +21,7 @@ from . import views
 
 #Common
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('enroll/', views.Enroll, name='enroll'),
+    path('', views.index, name='index'),    
     path('signup/', views.SignUp.as_view(), name='signup'),
     path('userslist/', views.UserListView.as_view(), name='userslist'),
     path('studentlist/<int:pk>', views.StudentListview.as_view(), name='studentlist')
