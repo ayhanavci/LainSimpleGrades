@@ -97,7 +97,7 @@ docker-compose up
 
 That's it. This command does all of the following in order;
 
-Everything below happens inside docker containers, so nothing gets installed on your host machine. Everything is isolated.
+Everything below 4 happens inside docker containers, so nothing gets installed on your host machine. Everything is isolated.
 
 1. Downloads Official Python 3.7 Docker Image
 2. Downloads Official Postgre Sql Docker Image
