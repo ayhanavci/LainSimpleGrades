@@ -4,7 +4,8 @@ Lain Simple Grades is a barebone demo web application that can be used as a star
 
 Project is a standard Django application with zero external dependencies. The only reference to outside world is Font Awesome icons url in ```/Grades/templates/base.html``` file for cosmetic purposes. Should work if you remove that too.
 
-For my blog post visit [Web With Python](https://lain.run/projects/Web-With-Python/)
+For project's post on my blog [Web With Python](https://lain.run/projects/Web-With-Python/)
+For Dockerizing the project post on my blog [Dockerizing Python on Linux](https://lain.run/projects/Dockerizing-Python-on-Linux/)
 
 Live demo at: http://grades.lain.run/
 
